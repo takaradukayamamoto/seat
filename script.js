@@ -31,15 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
             grid[9][colIndex]  = { number: startNum + 7 }; grid[10][colIndex] = { number: startNum + 8 }; grid[11][colIndex] = { number: startNum + 9 }; grid[12][colIndex] = { number: startNum + 10 };
         };
         placeColumnWithGaps(7, 1); placeColumnWithGaps(6, 12); placeColumnWithGaps(5, 23);
+        
+        // ★修正: 一番左の列（col4）の下2つを「null」にして席を消去しました
         const leftBlockCols = {
-            col4: [37, 41, 45, 49, 53, 57, 60, 63], col3: [36, 40, 44, 48, 52, 56, 60, 63],
-            col2: [35, 39, 43, 47, 51, 55, 59, 62], col1: [34, 38, 42, 46, 50, 54, 58, 61]
+            col4: [37, 41, 45, 49, 53, 57, null, null],
+            col3: [36, 40, 44, 48, 52, 56, 60, 63],
+            col2: [35, 39, 43, 47, 51, 55, 59, 62],
+            col1: [34, 38, 42, 46, 50, 54, 58, 61]
         };
         const rowOffset = 3;
         for (let row = 0; row < 8; row++) {
-            grid[row + rowOffset][0] = { number: leftBlockCols.col4[row] }; grid[row + rowOffset][1] = { number: leftBlockCols.col3[row] };
-            grid[row + rowOffset][2] = { number: leftBlockCols.col2[row] }; grid[row + rowOffset][3] = { number: leftBlockCols.col1[row] };
+            // nullではない（席が存在する）場合だけ描画するよう変更
+            if (leftBlockCols.col4[row]) grid[row + rowOffset][0] = { number: leftBlockCols.col4[row] };
+            if (leftBlockCols.col3[row]) grid[row + rowOffset][1] = { number: leftBlockCols.col3[row] };
+            if (leftBlockCols.col2[row]) grid[row + rowOffset][2] = { number: leftBlockCols.col2[row] };
+            if (leftBlockCols.col1[row]) grid[row + rowOffset][3] = { number: leftBlockCols.col1[row] };
         }
+        
         const finalSeats = [];
         for (let row = 0; row < 13; row++) {
             for (let col = 0; col < 8; col++) {
