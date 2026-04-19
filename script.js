@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ユーザー提供のURL（最新のものを使用）
-    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz-Yop8nwUvq0QnD9RJMTcyfEYHmH6SosJYZlp1AgN7KIJ8jdSf7JcQeqdQq2GrPv8RRg/exec';
+    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz7pCxV6edtcnEdRTPN_FtRfKd6kslbXxZ0Xg8EXtM9C5Qrxye_tgqkuLpSYnfAHx8Xrg/exec';
     
     let appData = {
         seatStatuses: {},
